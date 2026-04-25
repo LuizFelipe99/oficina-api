@@ -85,4 +85,27 @@ class VehicleController extends Controller
 
         return response()->json($vehicle);
     }
+
+    public function services($id)
+    {
+        $vehicle = Vehicle::find($id);
+
+        if (!$vehicle) {
+            return response()->json([
+                'message' => 'Veículo não encontrado'
+            ], 404);
+        }
+
+        $services = $vehicle->services()->paginate(10);
+
+        return response()->json([
+            'data' => $services->items(),
+            'meta' => [
+                'current_page' => $services->currentPage(),
+                'last_page' => $services->lastPage(),
+                'per_page' => $services->perPage(),
+                'total' => $services->total(),
+            ]
+        ]);
+    }
 }
