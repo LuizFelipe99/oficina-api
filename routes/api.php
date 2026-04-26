@@ -5,6 +5,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 
 // ROTAS PÚBLICAS (auth)
 Route::post('register', [AuthController::class, 'register']);
@@ -29,4 +30,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // LOGOUT (boa prática já deixar aqui)
     Route::post('logout', [AuthController::class, 'logout']);
+
+    // DASHBOARD
+    Route::get('dashboard', [DashboardController::class, 'index']);
 });
