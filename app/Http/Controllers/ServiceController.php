@@ -11,6 +11,7 @@ class ServiceController extends Controller
     //
     public function store(Request $request)
     {
+        
         $data = $request->validate(
             [
                 'vehicle_id' => 'required|exists:vehicles,id',
@@ -27,6 +28,7 @@ class ServiceController extends Controller
         // regra de negócio
         $data['status'] = 'open';
         $data['started_at'] = now();
+        $data['user_id'] = $request->user()->id;
 
         $service = Service::create($data);
 

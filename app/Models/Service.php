@@ -13,11 +13,17 @@ class Service extends Model
         'status',
         'price',
         'started_at',
-        'finished_at'
+        'finished_at',
+        'user_id'
     ];
 
     public function vehicle()
     {
         return $this->belongsTo(Vehicle::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
