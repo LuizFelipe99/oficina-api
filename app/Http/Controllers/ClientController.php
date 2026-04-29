@@ -170,6 +170,19 @@ class ClientController extends Controller
             ]
         ]);
     }
+
+    public function show($id)
+    {
+        $client = Client::find($id);
+
+        if (!$client) {
+            return response()->json(['message' => 'Cliente não encontrado'], 404);
+        }
+
+        return response()->json([
+            'data' => $client
+        ]);
+    }
 }
 
 
